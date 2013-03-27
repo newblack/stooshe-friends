@@ -23,7 +23,7 @@ $ ->
 				$('.message').fadeOut ->
 					$('.message').html "<h2 class='secondary js__count'>Analysing your friends</h2>"
 					$('.message').fadeIn ->
-						window.switch "reviewing #{friends.data.count()} friends"	
+						window.switch "reviewing #{friends.data.length} friends"	
 						$(friends.data).each (id, friend) ->
 							window.friends["#{friend.id}"] = 
 								name: friend.name
@@ -89,7 +89,7 @@ $ ->
 												<div class='profile'>
 													#{window.content}
 												</div>
-												<a class='button'>Confirm</a>
+												<a class='button js__confirm'>Confirm</a>
 		
 											"
 											$('.message--large').fadeIn()
@@ -105,3 +105,22 @@ $ ->
 		$('.friends-name').fadeOut ->
 			$('.friends-name').html $this.children('.profile__pic').attr('alt')
 			$('.friends-name').fadeIn()
+
+
+	$('.page').on "click", ".js__confirm", ->
+		box = $('.message--large')
+		box.fadeOut ->
+			box.load 'done.html', ->
+				box.fadeIn()
+				
+	$('.share__facebook').click ->
+		$().fb_share 
+			title: "Don't let it slip"
+			msg: "Have you been a bad friend? Don't let it slip, use Stooshe's Facebook app to find the friends you've lost touch with"
+			url: "https://www.facebook.com/stooshe/app_124292764425515"
+			pic: "https://stooshe.newblack.me/assets/img/share-icon.png"
+			
+			
+			
+			
+			

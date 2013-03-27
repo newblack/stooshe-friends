@@ -20,3 +20,18 @@ $.fn.extend
 			query: query
 		, (res) ->
 			callback(res)
+			
+	fb_share: (message, callback) ->
+		FB.ui
+			method: 'feed'
+			name: message.name
+			link: message.url
+			picture: message.pic
+			#caption: 'Reference Documentation'
+			description: message.msg
+			message: message.msg
+		,(res) ->
+			if res and res.post_id
+				callback.success()
+			else
+				callback.fail()
