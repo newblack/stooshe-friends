@@ -23,10 +23,8 @@ $ ->
 				$('.message').fadeOut ->
 					$('.message').html "<h2 class='secondary js__count'>Analysing your friends</h2>"
 					$('.message').fadeIn ->
-						i = 1
+						window.switch "reviewing #{friends.data.count()} friends"	
 						$(friends.data).each (id, friend) ->
-							window.switch "reviewing #{i} friends"
-							i++
 							window.friends["#{friend.id}"] = 
 								name: friend.name
 								score: 0
